@@ -1,5 +1,9 @@
 package edu.miu.cs.se.lab9.Lesson9.Lab.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,6 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "classroom")
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "classroomId")
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,7 +7,11 @@ import edu.miu.cs.se.lab9.Lesson9.Lab.repository.ClassroomRepository;
 import edu.miu.cs.se.lab9.Lesson9.Lab.repository.StudentRepository;
 import edu.miu.cs.se.lab9.Lesson9.Lab.repository.TranscriptRepository;
 import edu.miu.cs.se.lab9.Lesson9.Lab.service.StudentService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -37,5 +41,49 @@ public class StudentServiceImpl implements StudentService {
     public Classroom saveClassRoom(Classroom classroom) {
         return classroomRepository.save(classroom);
     }
+
+
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    @Override
+    public Student getStudentById(Long studentId) {
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        return studentOptional.orElse(null);
+
+    }
+
+    @Override
+    public Student addNewStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+
+    @Override
+    public Student updateExistingStudentById(Long studentId, Student student) {
+        Optional<Student> existingStudent = studentRepository.findById(studentId);
+        if (existingStudent.isPresent()) {
+            Student existingStudentEntity = existingStudent.get();
+            BeanUtils.copyProperties(student, existingStudentEntity, "studentId");
+            studentRepository.save(existingStudentEntity);
+            return existingStudentEntity;
+        }
+        return null;
+    }
+
+
+    @Override
+    public void deleteStudentById(Long studentId) {
+        studentRepository.deleteById(studentId);
+    }
+
+    @Override
+    public List<Student> searchStudentsByFirstName(String firstname) {
+        return studentRepository.getAllStudentByFirstName(firstname);
+    }
+
 
 }
