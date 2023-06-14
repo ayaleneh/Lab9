@@ -37,6 +37,9 @@ public class Student {
     @JoinColumn(name = "classroomid")
     private Classroom classroom;
 
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Course> courseList;
+
     public Student(String studentNumber, String firstName, String middleName, String lastName, Double cgpa, LocalDate dateOfEnrollment) {
         this.studentNumber = studentNumber;
         this.firstName = firstName;
