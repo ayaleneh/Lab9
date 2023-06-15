@@ -1,8 +1,6 @@
 package edu.miu.cs.se.lab9.Lesson9.Lab.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -14,7 +12,7 @@ import java.util.List;
 @Data
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "classroomId")
+        property = "classroomId", scope = Classroom.class)
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +20,7 @@ public class Classroom {
     private String buildingName;
     private String roomNumber;
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, orphanRemoval = true)
-//orphanRemoval= if classroom got deleted, it will not affect Student
+    //orphanRemoval= if classroom got deleted, it will not affect Student
     private List<Student> studentList;
 
     public Classroom(String buildingName, String roomNumber) {

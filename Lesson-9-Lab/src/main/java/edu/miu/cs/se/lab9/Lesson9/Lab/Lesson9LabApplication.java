@@ -29,9 +29,10 @@ public class Lesson9LabApplication implements CommandLineRunner {
         var classroom = new Classroom("McLaughlin building", "M105");
         studentService.saveClassRoom(classroom);
 
-        var course= new Course("CS401","Software Engineering");
+        var course= new Course("CS423","Software Engineering");
 
-        var student = new Student("000-61-0001", "Anna", "Lynn", "Smith", 3.45, LocalDate.of(2019, 5, 24),Boolean.FALSE);
+        var student = new Student("000-61-0001", "Anna", "Lynn", "Smith", 3.45,
+                LocalDate.of(2019, 5, 24),Boolean.FALSE);
         student.setTranscript(List.of(transcript));
         student.setClassroom(classroom);
         student.setCourseList(List.of(course));

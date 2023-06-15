@@ -1,8 +1,6 @@
 package edu.miu.cs.se.lab9.Lesson9.Lab.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +17,10 @@ import java.util.List;
 @Data
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "studentId")
+        property = "studentId", scope = Student.class)
+//cope is used to define applicability of an Object Id:
+// all ids must be unique within their scope; where scope
+// is defined as combination of this value and generator type.
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,14 +54,17 @@ public class Student {
     @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Course> courseList;
 
-    public Student(String studentNumber, String firstName, String middleName, String lastName, Double cgpa, LocalDate dateOfEnrollment, Boolean isInternational) {
+    public Student(String studentNumber, String firstName,
+                   String middleName, String lastName,
+                   Double cgpa, LocalDate dateOfEnrollment,
+                   Boolean isInternational) {
         this.studentNumber = studentNumber;
         this.firstname = firstName;
         this.middlename = middleName;
         this.lastname = lastName;
         this.cgpa = cgpa;
         this.dateOfEnrollment = dateOfEnrollment;
-        this.isInternational=isInternational;
+        this.isInternational = isInternational;
     }
 
     public Student() {

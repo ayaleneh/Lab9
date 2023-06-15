@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const StudentList=()=>{
   const [students, setStudents]=useState([]);
-  const [selectedStudent, setSelectedStudent]=useState(null);
+  // const [selectedStudent, setSelectedStudent]=useState(null);
   const navigate = useNavigate();
 
   useEffect(()=>{
