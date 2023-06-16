@@ -24,10 +24,10 @@ public class Lesson9LabApplication implements CommandLineRunner {
 
     public Student saveStudent() {
         var transcript = new Transcript("BS in Computer Science");
-        studentService.saveTranscript(transcript);
+        //studentService.saveTranscript(transcript);
 
         var classroom = new Classroom("McLaughlin building", "M105");
-        studentService.saveClassRoom(classroom);
+       // studentService.saveClassRoom(classroom);
 
         var course= new Course("CS423","Software Engineering");
 

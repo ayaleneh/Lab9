@@ -43,15 +43,15 @@ public class Student {
     @NotNull(message = "enrollment date can't be null")
     private LocalDate dateOfEnrollment;
     private Boolean isInternational;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "studentid")
     private List<Transcript> transcript;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     @JoinColumn(name = "classroomid")
     private Classroom classroom;
 
-    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "students", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Course> courseList;
 
     public Student(String studentNumber, String firstName,
