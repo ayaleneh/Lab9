@@ -21,7 +21,7 @@ const StudentForm=()=>{
   useEffect(()=>{
   if(isEditing){
     axios.get(`http://localhost:9090/api/v1/students/${studentId}`)
-    .then(response=>setStudent(response.data))
+    .then(response=>setStudent(response.data)) //data binding happen here, so when i try to edit student it will bring the data to be edited
     .catch(error=>console.error("Error:", error));
   }
   },[isEditing,studentId]);
@@ -39,7 +39,7 @@ const StudentForm=()=>{
     apiCall
     .then(response=>{
       alert(isEditing? "Student updated Successfully":"Student added Successfully");
-      navigate("/")
+      navigate("/students")
     })
     .catch(error=>console.error("Error:",error));
 
@@ -48,6 +48,7 @@ const StudentForm=()=>{
 
   return(
     <form onSubmit={handleSubmit}>
+      <fieldset>
       <label>
         Student Number:
         <input type="text" name="studentNumber" onChange={handleChange} value={student.studentNumber}/>
@@ -82,6 +83,7 @@ const StudentForm=()=>{
         <input type="checkbox" name="isInternational" onChange={e=>setStudent({...student, isInternational:e.target.checked})} checked={student.isInternational} />
       </label>
       <button type="submit">Submit</button>
+      </fieldset>
     </form>
   )
 }

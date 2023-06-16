@@ -82,7 +82,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> searchStudentsByFirstName(String firstname) {
-        return studentRepository.getAllStudentByFirstName(firstname);
+        //we can check if the passed string is what we have as an attribute and do search for each using if else.
+        //return studentRepository.getAllStudentByFirstName(firstname);
+        return studentRepository.getStudentsByFirstnameStartingWith(firstname);
     }
 
 

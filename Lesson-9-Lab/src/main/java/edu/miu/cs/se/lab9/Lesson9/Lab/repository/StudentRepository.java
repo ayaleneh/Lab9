@@ -12,5 +12,6 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
 
     @Query("select s from Student s where s.firstname=:firstname")
     List<Student> getAllStudentByFirstName(String firstname);
+    List<Student> getStudentsByFirstnameStartingWith(String firstname);
 
 }

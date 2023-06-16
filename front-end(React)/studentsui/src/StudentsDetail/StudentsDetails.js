@@ -33,7 +33,7 @@ const StudentDetails =()=>{
         .then(response=>{
           console.log(response.data);
           alert("Deleted Successfully");
-          navigate("/"); // Use navigate function to redirect
+          navigate("/students"); // Use navigate function to redirect
         })
         .catch(error=> console.error('Error:',error))
       }}>Delete</button>

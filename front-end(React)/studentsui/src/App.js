@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';// dashboard contain js file with name'PageRoutes' and 'Header'
 import Navbar from './Navbar/Navbar';
 import StudentList from './Students/StudentList';
 import StudentsDetails from './StudentsDetail/StudentsDetails';
